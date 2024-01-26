@@ -1,0 +1,17 @@
+services:
+    mysql:
+        image: mysql
+        container_name: test-mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 'some-pass'
+            MYSQL_DATABASE: 'test_db'
+
+    php:
+        build:
+            dockerfile: ./Dockerfile
+        container_name: test-php
+        tty: true
+        ports:
+            - '8010:8000'
+        volumes:
+            - './:/code'
